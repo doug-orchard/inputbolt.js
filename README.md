@@ -3,6 +3,10 @@
 **Current version: 1.0.0**<br/>
 Turn a input element into a dropdown/select. Includes a small mode making it easier to use with mobile devices.
 
+![inputbott.js min-max](https://raw.githubusercontent.com/doug-orchard/inputbolt.js/master/images/inputbolt_minmax.gif)
+
+![inputbott.js array](https://raw.githubusercontent.com/doug-orchard/inputbolt.js/master/images/inputbolt_array.gif)
+
 Note: This is my first plugin for jQuery, welcome any suggestions and or help to improve this.
 
 ## Using inputbold.js
