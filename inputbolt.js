@@ -1,6 +1,6 @@
 (function($) {
 
-    $.fn.inputbolt = function(oQSOptions, cb) {
+    $.fn.inputbolt = function(oQSOptions, callBack) {
 
         // Using a type method I like to follow.
         // All params should begin with the types letter. eg. nQuantity = 'number'
@@ -17,10 +17,11 @@
             DATA_MAX = 'max',
             DATA_ITEMS = 'items',
             DATA_VALUE = 'data-value',
-            TIME_PHONE_SIZE = 480,
-            TIME_OVERLAY_LIFE = 500000,
+            MAX_PHONE_SIZE = 480,
+            FIVE_SECONDS = 5000,
             ACTION_BLUR = 'blur',
             ACTION_CLICK = 'click',
+            ACTION_KEYPRESS = 'keypress',
             ACTION_MOUSEDOWN = 'mousedown',
             CLASS_STANDARD = 'qs-',
             TYPEOF_OBJECT = 'object',
@@ -30,9 +31,15 @@
         // possibly not good if you switch orientation...
         window.onresize = closeOverlay;
 
-        function callBack($elem) {
-            console.log($elem)
-            return cb($elem);
+        // The callback returns the input element that is currently inuse.
+        function callTheCallBack($elem) {
+            return callBack($elem);
+        }
+
+        function inputKeyFunc(eEvent) {
+            if (eEvent.keyCode === 13) {
+                closeOverlay($(this));
+            }
         }
 
         function inputClickFunc() {
@@ -55,7 +62,7 @@
                 $overlay.addClass(addSelector(CLASS_LARGE));
                 window.setTimeout(function() {
                     closeOverlay($this);
-                }, TIME_OVERLAY_LIFE);
+                }, FIVE_SECONDS);
             }
 
         }
@@ -79,8 +86,8 @@
 
         function closeOverlay($elem) {
             $(addSelector(CLASS_OVERLAY, true)).remove();
-            if (cb) {
-                callBack($elem)
+            if (callBack) {
+                callTheCallBack($elem)
             };
         }
 
@@ -120,9 +127,12 @@
 
             }
 
-            return createButtonGroup().css({
-                minWidth: nGroupWidth
-            }).append(aGroup);
+            return createButtonGroup()
+                .css({
+                    minWidth: nGroupWidth,
+                    maxWidth: '60%'
+                })
+                .append(aGroup);
         }
 
         function overlayClickFunc() {
@@ -134,7 +144,7 @@
         }
 
         function isScreenLarge() {
-            return window.innerWidth > TIME_PHONE_SIZE;
+            return window.innerWidth > MAX_PHONE_SIZE;
         }
 
         function newOverlay(oOptions) {
@@ -145,21 +155,20 @@
         }
 
         // Add conditions to each of the selected input fields.
-        this.each(function(i, elem) {
+        this.each(function(nNumber, eElem) {
             var $wrapper,
                 $_this,
                 $parent;
 
-            $_this = $(elem);
+            $_this = $(eElem);
             $parent = $_this.parent();
-
-            $_this.attr('placeholder', $_this.data(DATA_MIN));
 
             $_this
                 .on(ACTION_CLICK, inputClickFunc)
-                // .on(ACTION_BLUR, function(elem) {
-                //     closeOverlay($_this);
-                // });
+                .on(ACTION_KEYPRESS, inputKeyFunc)
+                .on(ACTION_BLUR, function(eElem) {
+                    closeOverlay($_this);
+                });
 
             $wrapper = $(ELEM_DIV)
                 .addClass(addSelector(CLASS_WRAPPER))

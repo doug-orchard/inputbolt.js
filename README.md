@@ -1,19 +1,23 @@
-# inputbolt.js
-### A jQuery dropdown/select plugin inspired input with mobile version.
-**Current version: 1.0.0**<br/>
-Turn a input element into a dropdown/select. Includes a small mode making it easier to use with mobile devices.
+![inputbott.js array](https://raw.githubusercontent.com/doug-orchard/inputbolt.js/master/images/header_inputboltjs.png)
 
-### js file sizes:
-    - Unminified Size: 4.9KB,
-    - Minified Size: 1.25KB,
-    - Gzipped Size: 677 bytes
+# inputbolt.js
+### A jQuery input dropdown/select plugin with mobile mode.
+
+**Current version: 1.0.1**<br/>
+Turn a normal input element into a dropdown/select item using either min/max integers or an array of predefined strings. Also includes a small mode making it easier to use with mobile devices.
+
+### js file sizes ( If sizing is an issue ):
+    - Unminified Size: 5.21KB,
+    - Minified Size: 1.6KB,
+    - Gzipped Size: 664 bytes
+
+### Currently supporting evergreen browsers. With possible min IE10 support,<span style="color:red;">**</span>
 
 ![inputbott.js min-max](https://raw.githubusercontent.com/doug-orchard/inputbolt.js/master/images/inputbolt_minmax.gif)
-
 ![inputbott.js array](https://raw.githubusercontent.com/doug-orchard/inputbolt.js/master/images/inputbolt_array.gif)
 
-Note: This is my first plugin for jQuery, welcome any suggestions and or help to improve this.
-
+Note: This is my first plugin for jQuery, I do welcome any and all suggestions to help and improve this plugin.
+<span style="color:red;">**</span> Only Chrome (latest) has been tested.
 ## Using inputbold.js
 Use the normal input element<span style="color:red;">*</span>.
 ```shell
@@ -49,7 +53,7 @@ More options to come...
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Doug Orchard
+Copyright (c) 2015 Doug Orchard<br/>
 https://github.com/doug-orchard/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
