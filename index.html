@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Inputbolt.js</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+        <style media="screen">
+            html {
+              box-sizing: border-box;
+            }
+            *, *:before, *:after {
+              box-sizing: inherit;
+            }
+            body{
+                text-align: center;
+                background-color: rgb(249,0,0);
+                color: #fff;
+            }
+            p{
+                padding: 0;
+                margin: 0;
+            }
+            a{
+                color: #fff;
+            }
+            footer{
+                padding: 50px 0 0 0;
+            }
+            img{
+                margin-top: 50px;
+            }
+            .clearfix{
+                background: rgba(0, 0, 0, 0.1);
+                border-radius: 4px;
+                padding: 40px;
+            }
+            .clearfix .qs-wrapper{
+                color: #333;
+            }
+        </style>
+        <link rel="stylesheet" href="https://rawgit.com/doug-orchard/inputbolt.js/master/inputbolt.min.css">
+    </head>
+    <body class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <img alt="inputbolt.js" src="https://raw.githubusercontent.com/doug-orchard/inputbolt.js/master/images/header_inputboltjs.png">
+                <div class="row">
+                    <div class="form-group col-md-4 col-md-offset-4 clearfix">
+                        <label for="name">Please enter a number</label>
+                        <input class="form-control" placeholder="Enter number here" data-min="0" data-max="10"/>
+                    </div>
+                </div>
+                <h3>A jQuery input dropdown/select plugin.</h3>
+                <h4>with mobile mode.</h4>
+                <footer>
+                    <p>Made by <a href="https://github.com/doug-orchard">Doug Orchard</a></p>
+                </footer>
+            </div>
+        </div>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="https://rawgit.com/doug-orchard/inputbolt.js/master/inputbolt.js"></script>
+        <script type="text/javascript">
+            $( function(){
+                $('.form-control').inputbolt({smallmode: true});
+            });
+        </script>
+    </body>
+</html>
