@@ -18,7 +18,7 @@ Turn a normal input element into a dropdown/select item using either min/max int
 
 Note: This is my first plugin for jQuery, I do welcome any and all suggestions to help and improve this plugin.
 <span style="color:red;">**</span> Only Chrome (latest) has been tested.
-## Using inputbold.js
+## Using inputbolt.js
 Use the normal input element<span style="color:red;">*</span>.
 ```shell
 <input/>
