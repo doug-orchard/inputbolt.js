@@ -1,4 +1,4 @@
-![inputbott.js array](https://raw.githubusercontent.com/doug-orchard/inputbolt.js/master/images/header_inputboltjs.png)
+![inputbott.js array](https://cdn.rawgit.com/doug-orchard/inputbolt.js/gh-pages/images/header_inputboltjs.png)
 
 # inputbolt.js
 ### A jQuery input dropdown/select plugin with mobile mode.
@@ -7,14 +7,14 @@
 Turn a normal input element into a dropdown/select item using either min/max integers or an array of predefined strings. Also includes a small mode making it easier to use with mobile devices.
 
 ### js file sizes ( If sizing is an issue ):
-    - Unminified Size: 7.01KB,
-    - Minified Size: 1.67KB,
-    - Gzipped Size: 842 bytes
+    - Unminified Size: 7.06KB,
+    - Minified Size: 1.68KB,
+    - Gzipped Size: 846 bytes
 
 ### Currently supporting evergreen browsers. With possible min IE10 support,<span style="color:red;">**</span>
 
-![inputbott.js min-max](https://raw.githubusercontent.com/doug-orchard/inputbolt.js/master/images/inputbolt_minmax.gif)
-![inputbott.js array](https://raw.githubusercontent.com/doug-orchard/inputbolt.js/master/images/inputbolt_array.gif)
+![inputbott.js min-max](https://cdn.rawgit.com/doug-orchard/inputbolt.js/gh-pages/images/inputbolt_minmax.gif)
+![inputbott.js array](https://cdn.rawgit.com/doug-orchard/inputbolt.js/gh-pages/images/inputbolt_array.gif)
 
 Note: This is my first plugin for jQuery, I do welcome any and all suggestions to help and improve this plugin.
 <span style="color:red;">**</span> Only Chrome (latest) has been tested.
