@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="inputbolt.min.css">
+    <style media="screen">
+        body{
+            padding-top: 100px;
+        }
+        .row{
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Examples</h1>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <label for="">data min-max values</label>
+                <input id="dataminmax" type="text" data-min="0" data-max="10">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <label for="">data item values</label>
+                <input id="dataitems" type="text" data-items="['one', 'two', 'three']">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <label for="">javascript min-max values</label>
+                <input id="objminmax" type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <label for="">javascript item values</label>
+                <input id="objitems" type="text">
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="inputbolt.js" charset="utf-8"></script>
+    <script type="text/javascript">
+            $( function(){
+                $('#dataminmax').inputbolt();
+                $('#dataitems').inputbolt();
+                $('#objminmax').inputbolt({min:10, max:20});
+                $('#objitems').inputbolt({items: ['one', 'two']});
+            });
+        </script>
+</body>
+</html>

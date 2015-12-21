@@ -3,7 +3,7 @@
 # inputbolt.js
 ### A jQuery input dropdown/select plugin with mobile mode.
 
-**Current version: 1.0.1**<br/>
+**Current version: 1.0.2**<br/>
 Turn a normal input element into a dropdown/select item using either min/max integers or an array of predefined strings. Also includes a small mode making it easier to use with mobile devices.
 
 ### js file sizes ( If sizing is an issue ):

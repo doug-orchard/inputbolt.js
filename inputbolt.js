@@ -166,11 +166,13 @@
 
             }
 
+            var CssStyles = {
+                minWidth: nGroupWidth,
+                maxWidth: '60%'
+            }
+
             return createButtonGroup()
-                .css({
-                    minWidth: nGroupWidth,
-                    maxWidth: '60%'
-                })
+                .css(CssStyles)
                 .append(aGroup);
         }
 
@@ -209,7 +211,7 @@
         }
 
         // Add conditions to each of the selected input fields.
-        this.each(function(nNumber, eElem) {
+        this.each(function(nInt, eElem) {
             var $wrapper,
                 $_this,
                 $parent;
