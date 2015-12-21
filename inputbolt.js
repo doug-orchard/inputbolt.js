@@ -134,8 +134,6 @@
 
             nGroupWidth = oOptions.width;
 
-            console.log(typeof oOptions.items);
-
             if (typeof oOptions.items === TYPEOF_STRING) {
 
                 aItems = oOptions.items.replace(/'/g, '"');

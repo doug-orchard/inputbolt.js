@@ -7,9 +7,9 @@
 Turn a normal input element into a dropdown/select item using either min/max integers or an array of predefined strings. Also includes a small mode making it easier to use with mobile devices.
 
 ### js file sizes ( If sizing is an issue ):
-    - Unminified Size: 7.06KB,
-    - Minified Size: 1.68KB,
-    - Gzipped Size: 846 bytes
+    - Unminified Size: 6.99KB,
+    - Minified Size: 1.65KB,
+    - Gzipped Size: 837 bytes
 
 ### Currently supporting evergreen browsers. With possible min IE10 support,<span style="color:red;">**</span>
 
