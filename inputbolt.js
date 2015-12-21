@@ -6,13 +6,16 @@
         // All params should begin with the types letter. eg. nQuantity = 'number'
         // $ for jQuery wrap elements.
 
-        var ELEM_UL = '<ul/>',
+        var delay,
+            ELEM_UL = '<ul/>',
             ELEM_DIV = '<DIV/>',
             CLASS_WRAPPER = 'wrapper',
             CLASS_LARGE = 'large',
             CLASS_BUTTONS = 'buttongroup',
             CLASS_BUTTON = 'button',
             CLASS_OVERLAY = 'overlay',
+            CLASS_STANDARD = 'qs-',
+            ELEMENT_INPUT = 'input',
             DATA_MIN = 'min',
             DATA_MAX = 'max',
             DATA_ITEMS = 'items',
@@ -23,9 +26,11 @@
             ACTION_CLICK = 'click',
             ACTION_KEYPRESS = 'keypress',
             ACTION_MOUSEDOWN = 'mousedown',
-            CLASS_STANDARD = 'qs-',
+            ACTION_MOUSELEAVE = 'mouseleave',
+            ACTION_MOUSEENTER = 'mouseenter',
             TYPEOF_OBJECT = 'object',
-            TYPEOF_STRING = 'string';
+            TYPEOF_STRING = 'string',
+            STRING_ERROR_MESSAGE = 'Error: Missing required data for inputbolt to work.';
 
         // If any changes to the window size occurs close all overlays...
         // possibly not good if you switch orientation...
@@ -36,40 +41,66 @@
             return callBack($elem);
         }
 
+        function inputBlurFunc() {
+            closeOverlay($(this));
+        }
+
         function inputKeyFunc(eEvent) {
             if (eEvent.keyCode === 13) {
                 closeOverlay($(this));
             }
         }
 
+        function mouseEnterWrapperFunc() {
+            clearTimeout(delay);
+        }
+
+        function mouseLeaveWrappeFunc() {
+            delay = window.setTimeout(function() {
+                closeOverlay($(this).find(ELEMENT_INPUT));
+            }, FIVE_SECONDS);
+        }
+
         function inputClickFunc() {
 
-            var $overlay,
+            var options = {},
+                $overlay,
                 $this = $(this);
 
             if (doesOverlayExsist($this)) return;
 
-            options = {
-                min: $this.data(DATA_MIN),
-                max: $this.data(DATA_MAX),
-                items: $this.data(DATA_ITEMS),
-                width: $this.width()
+            if (oQSOptions) {
+
+                if (oQSOptions.min !== undefined && oQSOptions.max !== undefined) {
+                    options.min = oQSOptions.min;
+                    options.max = oQSOptions.max;
+                } else if (oQSOptions.items !== undefined) {
+                    options.items = oQSOptions.items;
+                }
+
+            } else {
+
+                options.min = parseInt($this.data(DATA_MIN));
+                options.max = parseInt($this.data(DATA_MAX));
+                options.items = $this.data(DATA_ITEMS);
+
             }
+
+            options.width = $this.width();
 
             $overlay = newOverlay(options).appendTo($this.parent());
 
             if (isScreenLarge() || !oQSOptions.smallmode) {
+
                 $overlay.addClass(addSelector(CLASS_LARGE));
-                window.setTimeout(function() {
-                    closeOverlay($this);
-                }, FIVE_SECONDS);
+
             }
 
         }
 
         function buttonClickFunc() {
             var $this = $(this);
-            $this.parents(addSelector(CLASS_WRAPPER, true)).find('input').val($this.attr(DATA_VALUE));
+            $this.parents(addSelector(CLASS_WRAPPER, true)).find(ELEMENT_INPUT).val($this.attr(DATA_VALUE));
         }
 
         function createButton(sValue) {
@@ -103,6 +134,8 @@
 
             nGroupWidth = oOptions.width;
 
+            console.log(typeof oOptions.items);
+
             if (typeof oOptions.items === TYPEOF_STRING) {
 
                 aItems = oOptions.items.replace(/'/g, '"');
@@ -110,6 +143,12 @@
 
                 nMin = 0;
                 nMax = aItems.length - 1;
+
+            } else if (typeof oOptions.items === TYPEOF_OBJECT) {
+
+                nMin = 0;
+                nMax = oOptions.items.length - 1;
+                aItems = oOptions.items;
 
             } else {
 
@@ -147,6 +186,21 @@
             return window.innerWidth > MAX_PHONE_SIZE;
         }
 
+        function validateOptions($elem) {
+
+            if ($elem.data(DATA_MIN) !== undefined && $elem.data(DATA_MAX) !== undefined) {
+                return true;
+            } else if ($elem.data(DATA_ITEMS) !== undefined) {
+                return true;
+            } else if (oQSOptions && oQSOptions.min !== undefined && !oQSOptions.max !== undefined) {
+                return true;
+            } else if (oQSOptions && oQSOptions.items !== undefined) {
+                return true;
+            }
+            console.error(STRING_ERROR_MESSAGE);
+            return false;
+        }
+
         function newOverlay(oOptions) {
             return $(ELEM_DIV)
                 .addClass(addSelector(CLASS_OVERLAY))
@@ -163,15 +217,17 @@
             $_this = $(eElem);
             $parent = $_this.parent();
 
+            if (!validateOptions($_this)) return;
+
             $_this
                 .on(ACTION_CLICK, inputClickFunc)
                 .on(ACTION_KEYPRESS, inputKeyFunc)
-                .on(ACTION_BLUR, function(eElem) {
-                    closeOverlay($_this);
-                });
+                .on(ACTION_BLUR, inputBlurFunc);
 
             $wrapper = $(ELEM_DIV)
                 .addClass(addSelector(CLASS_WRAPPER))
+                .on(ACTION_MOUSELEAVE, mouseLeaveWrappeFunc)
+                .on(ACTION_MOUSEENTER, mouseEnterWrapperFunc)
                 .append($_this)
                 .appendTo($parent);
 

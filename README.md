@@ -7,9 +7,9 @@
 Turn a normal input element into a dropdown/select item using either min/max integers or an array of predefined strings. Also includes a small mode making it easier to use with mobile devices.
 
 ### js file sizes ( If sizing is an issue ):
-    - Unminified Size: 5.21KB,
-    - Minified Size: 1.6KB,
-    - Gzipped Size: 664 bytes
+    - Unminified Size: 7.01KB,
+    - Minified Size: 1.67KB,
+    - Gzipped Size: 842 bytes
 
 ### Currently supporting evergreen browsers. With possible min IE10 support,<span style="color:red;">**</span>
 
@@ -40,11 +40,24 @@ With data array
 $('input').inputbolt();
 ```
 
+
 ## Options
 
-Add mobile version
+Enable mobile version
 ```shell
-$('input').inputbolt({ smallmode: true });
+$('input').inputbolt( { smallmode: true } );
+```
+
+Add min-max values.
+This will override any attributes on the element.
+```shell
+$('input').inputbolt( { min: 0, max:10 } );
+```
+
+Add items strings via array.
+This will override any attributes on the element.
+```shell
+$('input').inputbolt( { items: [ 'one', 'two', 'three'] } );
 ```
 
 More options to come...
